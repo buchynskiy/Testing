@@ -10,6 +10,25 @@ PORT = int(os.environ.get('PORT', 5000))
 APIKEY = os.environ.get('APIKEY')
 TOKEN = APIKEY
 
+### Main functions:
+def start(update: Update, context: CallbackContext) -> None:
+    update.message.reply_text(f"""Hello, {update.effective_user.first_name} \U0001F44B \n\n1. Use /shorten to short urls\n2. Use /expand to expand urls.""")
+
+def stop(update: Update, context: CallbackContext) -> None:
+    update.message.reply_text("Bot is set on pause \U000023F8\nUse /start or /help, in order to \continue using the bot.")
+
+def help(update: Update, context: CallbackContext) -> None:
+    update.message.reply_text("""
+
+
+Available commands:
+
+/start --> Start the bot
+/stop --> Pause the bot
+/help --> Available commands
+/shorten --> Shorten urls
+/expand --> Expand urls""")
+
 # Needed variables
 actualInsert = 0
 listInsert = []
@@ -136,6 +155,8 @@ def main() -> None:
     dp.add_handler(MessageHandler(Filters.text & ~Filters.command, insertLink))
     dp.add_handler(CommandHandler('shorten', shorten))
     dp.add_handler(CommandHandler('expand', expand))
+    dp.add_handler(CommandHandler('start', start))
+    dp.add_handler(CommandHandler('stop', stop))
     dp.add_handler(CommandHandler('help', help))
 
     updater.start_webhook(listen="0.0.0.0",
