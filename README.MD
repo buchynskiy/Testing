@@ -1,4 +1,3 @@
-# Homie this is the thing
+# Second phase of the project
 
-* what about
-* you
+What you gonna do about this
