@@ -136,8 +136,6 @@ def main() -> None:
     dp.add_handler(MessageHandler(Filters.text & ~Filters.command, insertLink))
     dp.add_handler(CommandHandler('shorten', shorten))
     dp.add_handler(CommandHandler('expand', expand))
-    dp.add_handler(CommandHandler('start', start))
-    dp.add_handler(CommandHandler('stop', stop))
     dp.add_handler(CommandHandler('help', help))
 
     updater.start_webhook(listen="0.0.0.0",
